@@ -1,7 +1,5 @@
 class Solution {
     fun solution(cards1: Array<String>, cards2: Array<String>, goal: Array<String>): String {
-        var answer: String = "Yes"
-
         val card1Copy = cards1.toMutableList()
         val card2Copy = cards2.toMutableList()
 
@@ -14,9 +12,8 @@ class Solution {
                 card2Copy.removeFirst()
                 continue
             }
-            answer = "No"
-            return answer
+            return "No"
         }
-        return answer
+        return "Yes"
     }
 }
