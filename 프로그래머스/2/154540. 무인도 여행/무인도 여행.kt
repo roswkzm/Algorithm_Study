@@ -4,11 +4,11 @@ class Solution {
         val visited = Array(maps.size) { BooleanArray(maps[0].length) }
         val moveList = listOf(0 to 1, 0 to -1, 1 to 0, -1 to 0)
 
-        fun bfs(startIndex: Pair<Int, Int>) : Int {
-            var foodCount = maps[startIndex.first][startIndex.second].digitToInt()
+        fun bfs(startDestination: Pair<Int, Int>): Int {
+            var totalSize = maps[startDestination.first][startDestination.second].digitToInt()
             val queue = ArrayDeque<Pair<Int, Int>>()
-            queue.add(startIndex)
-            visited[startIndex.first][startIndex.second] = true
+            visited[startDestination.first][startDestination.second] = true
+            queue.add(startDestination)
 
             while (queue.isNotEmpty()) {
                 val (row, column) = queue.removeFirst()
@@ -16,16 +16,14 @@ class Solution {
                 for ((dr, dc) in moveList) {
                     val nextRow = row + dr
                     val nextColumn = column + dc
-                    if (nextRow in maps.indices && nextColumn in maps[0].indices && !visited[nextRow][nextColumn]) {
-                        if (maps[nextRow][nextColumn] != 'X') {
-                            queue.add(nextRow to nextColumn)
-                            visited[nextRow][nextColumn] = true
-                            foodCount += maps[nextRow][nextColumn].digitToInt()
-                        }
+                    if (nextRow in maps.indices && nextColumn in maps[0].indices && maps[nextRow][nextColumn] != 'X' && !visited[nextRow][nextColumn]) {
+                        visited[nextRow][nextColumn] = true
+                        queue.add(nextRow to nextColumn)
+                        totalSize += maps[nextRow][nextColumn].digitToInt()
                     }
                 }
             }
-            return foodCount
+            return totalSize
         }
 
         for (i in maps.indices) {
