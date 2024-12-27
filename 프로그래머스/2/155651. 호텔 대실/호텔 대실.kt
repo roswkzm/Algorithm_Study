@@ -2,22 +2,23 @@ import java.util.PriorityQueue
 
 class Solution {
     fun solution(book_time: Array<Array<String>>): Int {
-        val timeMap = book_time.map { timeToMinutes(it[0]) to timeToMinutes(it[1]) + 10 }.sortedBy { it.first }
+        val bookMinute =
+            book_time.map { timeToMinute(it[0]) to timeToMinute(it[1]) + 10 }.sortedBy { it.first }
         val rooms = PriorityQueue<Int>()
 
-        for ((start, end) in timeMap) {
-
+        for ((start, end) in bookMinute) {
             if (rooms.isNotEmpty() && rooms.peek()!! <= start) {
                 rooms.poll()
             }
-            rooms.offer(end)
+            rooms.add(end)
         }
+
 
         return rooms.size
     }
 
-    private fun timeToMinutes(time: String): Int {
+    fun timeToMinute(time: String): Int {
         val (hour, minute) = time.split(":").map { it.toInt() }
-        return (hour * 60) + minute
+        return hour * 60 + minute
     }
 }
