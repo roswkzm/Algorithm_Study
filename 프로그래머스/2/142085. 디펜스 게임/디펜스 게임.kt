@@ -4,12 +4,12 @@ class Solution {
     fun solution(n: Int, k: Int, enemy: IntArray): Int {
         var answer = 0
 
-        fun canSurvive(round: Int): Boolean {
+        fun canSolvedGame(stage: Int): Boolean {
             var remainingSoldiers = n
             var remainingShields = k
             val maxHeap = PriorityQueue<Int>(compareByDescending { it })
 
-            for (curStage in 0 until round) {
+            for (curStage in 0 until stage) {
                 maxHeap.add(enemy[curStage])
                 remainingSoldiers -= enemy[curStage]
 
@@ -27,13 +27,14 @@ class Solution {
 
         var start = 0
         var end = enemy.size
-        while (start <= end){
+
+        while (start <= end) {
             val mid = (start + end) / 2
-            if (canSurvive(mid)){
+            if (canSolvedGame(mid)) {
                 start = mid + 1
                 answer = mid
             } else {
-                end = mid -1
+                end = mid - 1
             }
         }
 
