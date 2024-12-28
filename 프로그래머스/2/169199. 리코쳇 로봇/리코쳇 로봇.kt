@@ -1,6 +1,6 @@
 class Solution {
     fun solution(board: Array<String>): Int {
-        var answer: Int = -1
+        val answer: Int = -1
         var startPosition = -1 to -1
         var endPosition = -1 to -1
         val moveList = listOf(0 to 1, 0 to -1, 1 to 0, -1 to 0)
@@ -20,21 +20,22 @@ class Solution {
         visited[startPosition.first][startPosition.second] = true
 
         while (queue.isNotEmpty()) {
-            val (row, column, length) = queue.removeFirst()
-            if (row == endPosition.first && column == endPosition.second) {
-                return length
+            val (row, column, moveCount) = queue.removeFirst()
+
+            if (row to column == endPosition) {
+                return moveCount
             }
 
             for ((dr, dc) in moveList) {
-                var curRow = row
-                var curCol = column
-                while (curRow + dr in board.indices && curCol + dc in board[0].indices && board[curRow + dr][curCol + dc] != 'D') {
-                    curRow += dr
-                    curCol += dc
+                var nextRow = row
+                var nextColumn = column
+                while (nextRow + dr in board.indices && nextColumn + dc in board[0].indices && board[nextRow + dr][nextColumn + dc] != 'D') {
+                    nextRow += dr
+                    nextColumn += dc
                 }
-                if (!visited[curRow][curCol]) {
-                    queue.add(Triple(curRow, curCol, length + 1))
-                    visited[curRow][curCol] = true
+                if (!visited[nextRow][nextColumn]) {
+                    queue.add(Triple(nextRow, nextColumn, moveCount + 1))
+                    visited[nextRow][nextColumn] = true
                 }
             }
         }
