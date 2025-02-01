@@ -17,7 +17,6 @@ class Solution {
         var currentTime = 0
 
         for ((name, startTime, playtime) in sortedPlans) {
-            // 기존 과제 처리
             while (pausedTasks.isNotEmpty() && currentTime < startTime) {
                 val (pausedName, _, remainingTime) = pausedTasks.poll()!!
                 if (currentTime + remainingTime <= startTime) {
