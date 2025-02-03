@@ -1,16 +1,16 @@
 class Solution {
     fun solution(want: Array<String>, number: IntArray, discount: Array<String>): Int {
         var answer: Int = 0
-        val wantCountMap = want.mapIndexed { index, s -> s to number[index] }.toMap()
+        val wantMap = want.mapIndexed { index, s -> s to number[index] }.toMap()
+        println(wantMap)
 
-        for (startIndex in 0..discount.size - number.sum()) {
-            val saleList = discount.slice(startIndex until startIndex + number.sum())
+        for (i in 0..discount.size - number.sum()) {
+            val saleList = discount.slice(i until i + number.sum())
+            val myList = wantMap.toMutableMap()
 
-            val myList = wantCountMap.toMutableMap()
-
-            saleList.forEach {
-                if (myList.keys.contains(it)) {
-                    myList[it] = myList.getValue(it) - 1
+            for (item in saleList){
+                if (myList.containsKey(item)){
+                    myList[item] = myList.getValue(item) - 1
                 }
             }
 
