@@ -1,10 +1,10 @@
 # [level 2] 멀리 뛰기 - 12914 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12914#qna) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12914) 
 
 ### 성능 요약
 
-메모리: 62.2 MB, 시간: 0.14 ms
+메모리: 64.4 MB, 시간: 2.75 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 10월 07일 08:34:50
+2025년 02월 03일 18:01:11
 
 ### 문제 설명
 
