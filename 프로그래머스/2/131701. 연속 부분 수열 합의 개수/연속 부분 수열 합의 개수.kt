@@ -1,14 +1,14 @@
 class Solution {
     fun solution(elements: IntArray): Int {
-        val circleElements = elements + elements
-        val result = mutableSetOf<Int>()
-
-        for (i in 1..elements.size) {
-            for (startIndex in elements.indices) {
-                result.add(circleElements.slice(startIndex until startIndex + i).sum())
+        val elementsList = elements + elements
+        val subSequenceSet = mutableSetOf<Int>()
+        
+        for(length in 1 .. elements.size) {
+            for(startIndex in elements.indices) {
+                subSequenceSet.add(elementsList.slice(startIndex until startIndex + length).sum())
             }
         }
-
-        return result.size
+        
+        return subSequenceSet.count()
     }
 }
