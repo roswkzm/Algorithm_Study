@@ -1,15 +1,16 @@
 class Solution {
     fun solution(n: Int, a: Int, b: Int): Int {
         var answer = 0
-
-        var tournamentNumberA = a
-        var tournamentNumberB = b
-
-        while (tournamentNumberA != tournamentNumberB) {
-            tournamentNumberA = (tournamentNumberA + 1) / 2
-            tournamentNumberB = (tournamentNumberB + 1) / 2
+ 
+        var currentA = a
+        var currentB = b
+        
+        while(currentA != currentB) {
             answer++
+            currentA = (currentA + 1) / 2
+            currentB = (currentB + 1) / 2
         }
+
         return answer
     }
 }
