@@ -1,26 +1,25 @@
 class Solution {
     fun solution(progresses: IntArray, speeds: IntArray): IntArray {
-
-        val remainingDays = progresses.mapIndexed { index, progress ->
-            val days = (100 - progress) / speeds[index]
-            if ((100 - progress) % speeds[index] > 0) days + 1 else days
+        val remainingDays = progresses.mapIndexed { index, i -> 
+            val day = (100 - i) / speeds[index]
+            if ((100 - i) % speeds[index] > 0) day + 1 else day
         }
-
+        
         val result = mutableListOf<Int>()
-        var currentMaxDay = remainingDays[0]
+        var currentDay = remainingDays[0]
         var count = 0
-
+        
         for (day in remainingDays) {
-            if (day <= currentMaxDay) {
+            if(day <= currentDay) {
                 count++
             } else {
                 result.add(count)
-                currentMaxDay = day
+                currentDay = day
                 count = 1
             }
         }
         result.add(count)
-
+        
         return result.toIntArray()
     }
 }
