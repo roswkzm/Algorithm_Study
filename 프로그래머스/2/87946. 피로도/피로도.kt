@@ -1,25 +1,24 @@
 class Solution {
     fun solution(k: Int, dungeons: Array<IntArray>): Int {
-        var successCountList = -1
-
-        fun backtrack(currentFatigue: Int, participationDungeon: MutableList<IntArray>) {
-            if (participationDungeon.size > dungeons.size) {
+        var answer: Int = -1
+        
+        fun backtrack(currentFatigue : Int, participantDungeons: MutableList<IntArray>) {
+            if (participantDungeons.size > dungeons.size) {
                 return
             }
-            successCountList = maxOf(successCountList, participationDungeon.size)
-            for (dungeon in dungeons) {
-                if (dungeon !in participationDungeon && currentFatigue >= dungeon[0]) {
-                    participationDungeon.add(dungeon)
-                    backtrack(currentFatigue - dungeon[1], participationDungeon)
-                    participationDungeon.removeAt(participationDungeon.size - 1)
+            answer = maxOf(answer, participantDungeons.size)
+            
+            for(dungeon in dungeons) {
+                if(dungeon !in participantDungeons && currentFatigue >= dungeon[0]) {
+                    participantDungeons.add(dungeon)
+                    backtrack(currentFatigue - dungeon[1], participantDungeons)
+                    participantDungeons.remove(dungeon)
                 }
-
             }
-
         }
-
+        
         backtrack(k, mutableListOf())
-
-        return successCountList
+        
+        return answer
     }
 }
