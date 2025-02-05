@@ -1,24 +1,28 @@
 class Solution {
     fun solution(x: Int, y: Int, n: Int): Int {
-        if (x == y) return 0
         val queue = ArrayDeque<Pair<Int, Int>>()
-        val visited = mutableSetOf(x)
-        queue.add(x to 0)
-
-        while (queue.isNotEmpty()) {
-            val (value, steps) = queue.removeFirst()
-
-            val nextValue = listOf(value + n, value * 2, value * 3)
-            for (next in nextValue) {
-                if (next == y) {
-                    return steps + 1
-                }
-                if (next < y && next !in visited) {
-                    visited.add(next)
-                    queue.add(next to steps + 1)
+        val visited = mutableSetOf<Int>()
+        
+        queue.add(0 to x)
+        visited.add(x)
+        
+        while(queue.isNotEmpty()) {
+            
+            val (step, value) = queue.removeFirst()
+            val direction = listOf(value + n, value * 2, value * 3)
+            
+            if(value == y) {
+                return step
+            }
+            
+            for(direct in direction) {
+                if(direct <= y && direct !in visited) {
+                    queue.add(step + 1 to direct)
+                    visited.add(direct)
                 }
             }
         }
+        
         return -1
     }
 }
