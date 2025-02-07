@@ -4,15 +4,15 @@ class Solution {
         var sum = 0
         var minLength = Int.MAX_VALUE
         var result = intArrayOf(-1, -1)
-
-        for (right in sequence.indices) {
+        
+        for(right in sequence.indices) {
             sum += sequence[right]
-
-            while (sum >= k) {
-                if (sum == k) {
-                    val currentLength = right - left
-                    if (currentLength < minLength) {
-                        minLength = currentLength
+            
+            while(sum >= k) {
+                if(sum == k) {
+                    val currLength = right - left
+                    if (currLength < minLength){
+                        minLength = currLength
                         result = intArrayOf(left, right)
                     }
                 }
@@ -20,6 +20,7 @@ class Solution {
                 left++
             }
         }
+        
         return result
     }
 }
